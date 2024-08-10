@@ -64,7 +64,7 @@ Follow these steps to run the email sender:
          "message": "message-of-the-email",
          "sender_email": "sender-email",
          "sender_password": "sender-email-password",
-         "recipient_email" "recipient_email"
+         "recipient_email": "recipient_email"
       ```
 
 ## Cloning / Forking
