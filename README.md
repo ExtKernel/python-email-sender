@@ -1,12 +1,20 @@
-# Python Email Sender
+# A fork of Python Email Sender
 
-Send emails automatically using most email service providers with this simple script in Python!
+Send emails automatically using most email service providers with this simple server in Python! 
+The difference between this fork and the original repository is that we're setting up a Flask server and using environment variables here for configuration.
 
 ## Overview
-The two modules used in this script are *smtplib* and *email.mime.text*.
+The server uses the following modules:
 
-- `smtplib` is a Python standard library module that provides an implementation of the Simple Mail Transfer Protocol (SMTP) for sending email messages. It is used to send email messages over the Internet, using an SMTP server.
-- `email.mime.text` is a module within the email package, which is also part of the Python standard library. It provides the `MIMEText` class, which is used to create plain text email messages. The `MIMEText` class takes the plain text message as an argument and creates an email message object, which can then be sent using an `smtplib` SMTP server.
+- Flask: A lightweight WSGI web application framework used for building web applications and APIs in Python. 
+- PyJWT: A Python library for working with JSON Web Tokens (JWT), which is commonly used for securely transmitting information between parties as a JSON object. 
+- cryptography: A Python library that provides cryptographic recipes and primitives, often used for encrypting data, generating secure tokens, and handling key management. 
+- cffi: The C Foreign Function Interface for Python, used for interfacing with C code. This module is often used indirectly through other libraries. 
+- Jinja2: A templating engine for Python, used by Flask to render HTML templates. 
+- Werkzeug: A comprehensive WSGI web application library used by Flask to handle the underlying HTTP protocol. 
+- click: A Python package for creating command-line interfaces (CLI) with minimal code. 
+- smtplib: A module for sending email using the Simple Mail Transfer Protocol (SMTP). 
+- email.mime.text: A module used for creating email messages with MIME (Multipurpose Internet Mail Extensions) format, specifically for text content.
 
 ## Usage
 To use this email sender, you'll need the following information:
@@ -17,19 +25,68 @@ To use this email sender, you'll need the following information:
 
 Follow these steps to run the email sender:
 
-1. Enter your email,password and SMTP Server information in the credentials.py file.
-2. Make sure both credentials.py and email_sender.py are in the same directory.
-3. Run the email_sender.py file."
+1. Clone the repository:
+   ```bash
+      git clone https://github.com/ExtKernel/python-email-sender
+   ```
+2. Navigate to the project directory:
+   ```bash
+      cd python-email-sender
+   ```
+3. Export environment variables:
+   - `EXPECTED_ISSUER` - the expected issuer of the token 
+   - `OAUTH2_PROVIDER_URL` - the /certs endpoint of the Oauth2 provider
+   - `EXPECTED_ROLE` - the expected role that the Oauth2 user should have to access the app
+   - `CLIENT_ID` - the client ID of this app from the Oauth2 provider
+   - `SMPT_SERVER_ADDRESS` - SMTP server address
+   - `SMTP_SERVER_PORT` - SMTP server port
+4. Install requirements:
+   ```bash
+      pip install -r requrements.txt
+   ```
+5. Run the app:
+   ```bash
+      python app.py
+   ```
+   Or you can run it using:
+   ```bash
+      Flask run
+   ```
+   and specify any arguments that are applicable to the Flask command.
+6. Make a request:
+   1. Include a token in Authorization headers:
+      ```json
+         "Authorization": "Bearer <your-token>"
+      ```
+   2. Build a JSON request body. Example:
+      ```json
+         "subject": "subject-of-the-email",
+         "message": "message-of-the-email",
+         "sender_email": "sender-email",
+         "sender_password": "sender-email-password",
+         "recipient_email" "recipient_email"
+      ```
 
 ## Cloning / Forking
 
+To fork my repository:
 ```bash
-  git clone https://github.com/SISSEF/python-email-sender.git
+   git clone https://github.com/ExtKernel/python-email-sender
 ```
+
+To fork the original repository:
+```bash
+   git clone https://github.com/SISSEF/python-email-sender.git 
+```
+
 This project is licensed under a [MIT](https://choosealicense.com/licenses/mit/) LICENSE.
 
 ## Feedback
 
-If you have any feedback, please reach out to me at youssef@idlahsen.me
+If you have any feedback, you can reach out the author of the original repository at youssef@idlahsen.me
 
 - [@SISSEF](https://github.com/SISSEF/)
+
+Or you can reach me at dev.exkernel@gmail.com if you have a feedback about this fork specifically
+
+- [@ExtKernel](https://github.com/ExtKernel)
