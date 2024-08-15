@@ -23,8 +23,22 @@ To use this email sender, you'll need the following information:
    - The port number used by the SMTP server.
    - Your email account credentials.
 
-Follow these steps to run the email sender:
+### Make a request:
+   1. Include a token in Authorization headers:
+      ```json
+         "Authorization": "Bearer <your-token>"
+      ```
+   2. Build a JSON request body. Example:
+      ```json
+         "subject": "subject-of-the-email",
+         "message": "message-of-the-email",
+         "sender_email": "sender-email",
+         "sender_password": "sender-email-password",
+         "recipient_email": "recipient_email"
+      ```
 
+## Install
+### Bare metal
 1. Clone the repository:
    ```bash
       git clone https://github.com/ExtKernel/python-email-sender
@@ -53,19 +67,18 @@ Follow these steps to run the email sender:
       Flask run
    ```
    and specify any arguments that are applicable to the Flask command.
-6. Make a request:
-   1. Include a token in Authorization headers:
-      ```json
-         "Authorization": "Bearer <your-token>"
-      ```
-   2. Build a JSON request body. Example:
-      ```json
-         "subject": "subject-of-the-email",
-         "message": "message-of-the-email",
-         "sender_email": "sender-email",
-         "sender_password": "sender-email-password",
-         "recipient_email": "recipient_email"
-      ```
+
+### Docker
+1) Pull the image:
+    ```bash
+      docker pull exkernel/python-email-sender:<VERSION>
+    ```
+2) Run the container:
+    ```bash
+      docker run --name=win-user-sync-server -p 8000:5000 exkernel/python-email-sender:<VERSION>
+    ```
+   - You can map any external port you want to the internal one
+   - You can give any name to the container
 
 ## Cloning / Forking
 
